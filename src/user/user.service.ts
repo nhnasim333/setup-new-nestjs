@@ -17,4 +17,14 @@ export class UserService {
        const user = this.users.find(user => user.id === id);
        return user;
     }
+
+    createUser(name: string, type: string) {
+        const newUser = {
+            id: this.users.length + 1,
+            name,
+            type
+        };
+        this.users.push(newUser);
+        return newUser;
+    }
 }
