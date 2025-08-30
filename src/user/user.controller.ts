@@ -15,7 +15,6 @@ export class UserController {
     @Get(':id')
     getUserById(@Param('id') id: number) {
         const user = this.userService.getUserById(+id);
-        // console.log("user=====", user);
         return user;
     }
 }
