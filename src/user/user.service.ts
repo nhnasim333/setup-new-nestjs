@@ -18,11 +18,10 @@ export class UserService {
        return user;
     }
 
-    createUser(name: string, type: string) {
+    createUser(user: userDto) {
         const newUser = {
             id: this.users.length + 1,
-            name,
-            type
+            ...user
         };
         this.users.push(newUser);
         return newUser;
