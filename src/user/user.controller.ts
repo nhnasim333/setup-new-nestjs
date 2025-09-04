@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, NotFoundException, Param, Post } from '@nestjs/common';
 import { UserService } from './user.service';
 import { UserDto } from './user.dto';
 
@@ -15,8 +15,13 @@ export class UserController {
 
     @Get(':id')
     getUserById(@Param('id') id: number) {
-        const user = this.userService.getUserById(+id);
+        try {
+            const user = this.userService.getUserById(+id);
         return user;
+        } catch (error: any) {
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+            throw new NotFoundException(error?.message);
+        }
     }
 
     @Post()
